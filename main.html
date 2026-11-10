@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Güvenli Sofra | Çölyaklı haneler için yemek planı ve alışveriş</title>
+<meta name="description" content="Çölyaklı haneler için glutensiz ürünleri güvenle bulan, haftalık yemek planı çıkaran ve alışveriş listesini hazırlayan mobil uygulama (geliştirme aşamasında).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#1F4D3A;--bg:#FBF8F3;--amber:#B8641A;--mut:#4A5B52;--line:#E4DED2;--tint:#E6EFE9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:#17231D;line-height:1.6}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;margin:0;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(28px,3.6vw,42px)}h3{font-size:21px}
+p{margin:0}a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:0;z-index:5;background:rgba(251,248,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav nav{display:flex;gap:22px;font-size:14px;font-weight:500;color:#33443B}
+.nav nav a:hover{color:var(--brand)}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--brand)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 24px;border-radius:999px;font-weight:600;font-size:15px;border:0;cursor:pointer;font-family:inherit}
+.btn-p{background:var(--brand);color:#fff}.btn-p:hover{background:#163A2B}
+.btn-s{border:1.5px solid var(--brand);color:var(--brand)}.btn-s:hover{background:var(--tint)}
+.sec{padding:84px 0}.alt{background:#fff}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.lead{font-size:18px;color:var(--mut);max-width:680px;margin-top:16px}
+.g2,.g3,.g4,.g5{display:grid;gap:22px;margin-top:40px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px}
+.alt .card{background:var(--bg)}
+.card h3{margin:14px 0 8px}.card p,.card li{color:var(--mut);font-size:15px}
+.num{width:38px;height:38px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+.pill{display:inline-block;background:var(--tint);color:var(--brand);font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:56px 0 76px}
+.notice{background:#FCE9CF;color:#6B3A08;font-size:14px;text-align:center;padding:10px 16px}
+.phone{width:300px;background:#fff;border-radius:32px;padding:22px;box-shadow:0 24px 60px rgba(31,77,58,.18)}
+.row{display:flex;justify-content:space-between;gap:8px;padding:12px 0;border-bottom:1px solid #EEE9DE;font-size:14px}
+.tag{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap;display:inline-block}
+.ok{background:#DDF0E3;color:#17603A}.warn{background:#FCE9CF;color:#8A4A0B}.no{background:#F8DEDA;color:#8C2A1C}.gray{background:#EEE9DE;color:#4A5B52}
+.dark{background:var(--brand);color:#F3F7F4;border-radius:32px;padding:64px 48px}
+.dark .card{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)}
+.dark .card p{color:#CFE0D5}
+.stat{font-family:'Fraunces',serif;font-size:46px;font-weight:600;color:var(--brand);line-height:1}
+.src{font-size:12.5px;color:#5B6B63;margin-top:12px}
+.pend{border:2px dashed #CFC8B8;border-radius:22px;padding:28px;background:#fff;color:var(--mut);font-size:15px}
+.tw{overflow-x:auto;margin-top:36px;border:1px solid var(--line);border-radius:18px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:14.5px}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid #EEE9DE;vertical-align:top}
+th{background:var(--tint);color:var(--brand)}
+.bmc{display:grid;grid-template-columns:repeat(10,1fr);grid-template-areas:"pa pa ac ac va va cr cr cs cs" "pa pa re re va va ch ch cs cs" "co co co co co rv rv rv rv rv";gap:12px;margin-top:40px}
+.bmc div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.bmc h3{font-size:16px;margin-bottom:8px;color:var(--brand)}.bmc p{font-size:13.5px;color:var(--mut)}
+.stage{border-top:3px solid var(--line);padding-top:18px}.stage.on{border-color:var(--amber)}
+.refs{font-size:13.5px;color:#4A5B52;padding-left:18px}.refs li{margin-bottom:6px}
+footer{border-top:1px solid var(--line);padding:32px 0;color:#5B6B63;font-size:13.5px}
+@media(max-width:980px){.nav nav{display:none}.hero,.g2,.g3,.g4,.g5{grid-template-columns:1fr}.bmc{grid-template-columns:1fr;grid-template-areas:none}.bmc div{grid-area:auto!important}.dark{padding:40px 22px}}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px;margin-top:44px}
+.step h3{font-size:20px;margin:14px 0 6px;color:#fff}.step>p{color:#CFE0D5;font-size:15px;margin-bottom:18px;min-height:46px}
+.step .num{background:#F3C77E;color:#17231D}
+.scr{width:100%;max-width:250px;min-height:430px;margin:0 auto;background:var(--bg);color:#17231D;border:6px solid #0E2A1E;border-radius:30px;padding:16px 14px;font-size:12.5px;line-height:1.4;display:flex;flex-direction:column;gap:8px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.scr .t{font-weight:700;font-size:15px}.scr .sub{font-size:11px;color:#5B6B63}
+.scr .box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 10px}
+.scr .r{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.chip{display:inline-block;background:var(--tint);color:var(--brand);border-radius:99px;padding:2px 9px;font-size:11px;font-weight:600;margin:2px 2px 0 0}
+.scr .tag{font-size:10px;padding:2px 7px}
+.scr .btn{min-height:36px;font-size:12.5px;padding:0 14px;margin-top:auto;width:100%}
+.bar{height:8px;background:#EEE9DE;border-radius:99px}.bar i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.chk{width:14px;height:14px;border:1.5px solid var(--brand);border-radius:4px;flex:none;display:inline-block;margin-right:7px;vertical-align:-3px}
+.chk.on{background:var(--brand)}
+.lock{opacity:.55}
+.demo{font-size:11px;color:#CFE0D5;text-align:center;margin-top:12px}
+@media(max-width:980px){.steps{grid-template-columns:1fr}.step>p{min-height:0}}
+</style>
+</head>
+<body>
+<div class="notice">Güvenli Sofra şu an konsept ve geliştirme aşamasındadır. Gösterilen ekranlar örnek tasarımdır.</div>
+<header><div class="wrap nav">
+<a class="logo" href="#">Güvenli Sofra</a>
+<nav aria-label="Ana menü"><a href="#sorun">Sorun</a><a href="#cozum">Çözüm</a><a href="#fark">Fark</a><a href="#nasil">Nasıl çalışır</a><a href="#musteri">Müşteri</a><a href="#veri">Veri</a><a href="#bmc">İş modeli</a></nav>
+<!-- TODO: crowdfunding kampanya linkini href'e yazın -->
+<a class="btn btn-p" href="#destek">Projeyi destekle</a>
+</div></header>
+
+<div class="wrap hero">
+<div>
+<span class="pill">Çölyaklı haneler için</span>
+<h1 style="font-size:clamp(38px,5.4vw,62px)">Glutensiz alışveriş artık yorucu olmak zorunda değil.</h1>
+<p class="lead">Güvenli Sofra, çölyaklı bireyle yaşayan haneler için glutensiz ürünleri güvenle bulan, bütçeye uygun haftalık yemek planı çıkaran ve alışveriş listesini hazırlayan bir mobil uygulamadır.</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px"><a class="btn btn-p" href="#destek">Projeyi destekle</a><a class="btn btn-s" href="#nasil">Nasıl çalışır?</a></div>
+</div>
+<div style="background:var(--tint);border-radius:32px;padding:34px;display:flex;justify-content:center">
+<div class="phone">
+<div style="font-weight:700;font-size:17px">Bu haftanın planı</div>
+<div style="font-size:13px;color:#5B6B63;margin-bottom:8px">Profil: Çölyak + Laktoz · Örnek ekran</div>
+<div class="row"><span>Pzt · Mercimek çorbası</span><span class="tag ok">Doğrulanmış</span></div>
+<div class="row"><span>Sal · Fırın tavuk, pirinç</span><span class="tag ok">Doğrulanmış</span></div>
+<div class="row"><span>Çar · Makarna</span><span class="tag warn">Bilgi yetersiz</span></div>
+<div class="row"><span>Per · Sandviç</span><span class="tag no">Uygun değil</span></div>
+<div style="margin-top:16px;font-size:13px;font-weight:600">Haftalık bütçe</div>
+<div style="height:10px;background:#EEE9DE;border-radius:99px;margin-top:8px"><div style="width:62%;height:100%;background:var(--brand);border-radius:99px"></div></div>
+<div class="btn btn-p" style="width:100%;margin-top:18px;min-height:42px;font-size:14px">Alışveriş listesini aç</div>
+</div></div>
+</div>
+
+<section class="sec alt" id="sorun"><div class="wrap">
+<div class="eyebrow">Problem</div>
+<h2 style="max-width:760px">Ömür boyu sürecek bir diyet, dağınık bilgi ve yüksek maliyet.</h2>
+<div class="g4">
+<div class="card"><h3>Güven</h3><p>Gizli gluten ve çapraz bulaşma riski nedeniyle ürün etiketleri dikkatle okunmalı. "İz miktarda gluten içerebilir" gibi uyarıları yorumlamak hanenin üzerine kalıyor.</p></div>
+<div class="card"><h3>Maliyet</h3><p>Glutensiz alternatifler çoğu zaman sıradan eşdeğerlerinden daha pahalı ve her markette bulunmuyor.</p></div>
+<div class="card"><h3>Zahmet</h3><p>Tarif bulma, uygun ürünü arama, fiyat karşılaştırma ve alışveriş listesi hazırlama ayrı ayrı araçlarda yapılıyor.</p></div>
+<div class="card"><h3>Menü tıkanıklığı</h3><p>Seçenekler kısıtlı olduğu için "Bugün ne pişireceğim?" sorusu her gün stres yaratıyor.</p></div>
+</div>
+</div></section>
+
+<section class="sec" id="cozum"><div class="wrap">
+<div class="eyebrow">Çözüm</div>
+<h2 style="max-width:760px">Haftalık yemeği ve alışverişi güvenli, ekonomik ve zahmetsiz hale getiriyoruz.</h2>
+<div class="g3" style="grid-template-columns:repeat(3,1fr)">
+<div class="card"><div class="num">1</div><h3>Beslenme profili</h3><p>Çölyak ve laktoz gibi kısıtlar; hanedeki her birey için ayrı profil.</p></div>
+<div class="card"><div class="num">2</div><h3>Tarif ve haftalık plan</h3><p>Profile uygun tarifler ve haftalık yemek planı.</p></div>
+<div class="card"><div class="num">3</div><h3>Ürün eşleştirme</h3><p>Tarif malzemeleri uygun ürünlerle eşleşir. Ürünler "doğrulanmış", "uygun değil" veya "bilgi yetersiz" olarak sınıflandırılır; bilgisi eksik ürün güvenli sayılmaz.</p></div>
+<div class="card"><div class="num">4</div><h3>Liste ve bütçe</h3><p>Alışveriş listesi ve bütçe takibi.</p></div>
+</div>
+<p class="lead" style="max-width:none">İlerleyen aşamalar: marketler arası canlı fiyat ve stok karşılaştırması, en ekonomik sepet, sepete otomatik aktarım, evdeki ürün ve israf takibi, restoran rehberi.</p>
+</div></section>
+
+<section class="sec alt" id="fark"><div class="wrap">
+<div class="eyebrow">Değer önerisi ve rakipler</div>
+<h2 style="max-width:780px">Mevcut çözümler sürecin bir parçasına odaklanıyor. Biz hepsini hane için birleştiriyoruz.</h2>
+<p class="lead">Ürün tarama, fiyat karşılaştırma ve online satış ayrı yerlerde duruyor. Farkımız, ürün uygunluğunu haftalık yemek ve alışveriş planına bağlamak.</p>
+<div class="tw"><table>
+<thead><tr><th>Rakip</th><th>Ana sunduğu</th><th>Bizim fırsatımız</th></tr></thead>
+<tbody>
+<tr><td>Gluten Alarmı</td><td>Gluten odaklı barkod tarama</td><td>Entegre yemek ve alışveriş planı</td></tr>
+<tr><td>Glunow</td><td>Glutensiz ürün keşfi ve restoran bilgisi</td><td>Hane bazlı bütçe ve yemek planı</td></tr>
+<tr><td>Fig</td><td>Kişisel diyet kısıtları ve ürün tarama</td><td>Türkiye marketlerine özel alışveriş entegrasyonu</td></tr>
+<tr><td>Cimri, Akakçe</td><td>Market ve sepet fiyat karşılaştırma</td><td>Fiyattan önce diyet uygunluğu</td></tr>
+<tr><td>Glutensiz.com ve uzman mağazalar</td><td>Online glutensiz ürün satışı</td><td>Ürün ve kaynakları pazar genelinde karşılaştırma</td></tr>
+</tbody></table></div>
+<p class="src">Rakip bilgileri halka açık tanıtım metinlerine dayanır; uygulama testleri sürüyor.</p>
+</div></section>
+
+<section class="sec" id="nasil"><div class="wrap"><div class="dark"><div class="eyebrow" style="color:#F3C77E">Nasıl çalışır</div><h2 style="max-width:620px">Profilden alışveriş listesine altı adım.</h2><div class="steps"><div class="step"><div class="num">1</div><h3>Hane profilini oluştur</h3><p>Çölyak, laktoz gibi beslenme gereksinimlerini gir.</p><div class="scr" role="img" aria-label="Örnek uygulama ekranı: Hane profilini oluştur"><div class="t">Hane profili</div><div class="sub">Kimler için planlıyoruz?</div>
+<div class="box"><div class="r"><b>Ayşe</b><span class="sub">Ebeveyn</span></div><span class="chip">Kısıt yok</span></div>
+<div class="box"><div class="r"><b>Efe</b><span class="sub">Çocuk</span></div><span class="chip">Çölyak</span><span class="chip">Laktoz</span></div>
+<div class="box"><div class="r"><b>Mehmet</b><span class="sub">Ebeveyn</span></div><span class="chip">Kısıt yok</span></div>
+<div class="box" style="border-style:dashed;text-align:center;color:var(--brand);font-weight:600">+ Üye ekle</div>
+<div class="btn btn-p">Devam et</div></div></div><div class="step"><div class="num">2</div><h3>Tercihlerini belirle</h3><p>Haftalık bütçeni, hane büyüklüğünü ve evdeki malzemeleri ekle.</p><div class="scr" role="img" aria-label="Örnek uygulama ekranı: Tercihlerini belirle"><div class="t">Tercihler</div><div class="sub">Planı sana göre kuralım</div>
+<div class="box"><div class="sub">Haftalık bütçe</div><div class="r"><b style="font-size:16px">₺ 0.000</b><span class="sub">örnek</span></div></div>
+<div class="box"><div class="sub">Hane büyüklüğü</div><div class="r"><b style="font-size:16px">3 kişi</b><span class="sub">− &nbsp; +</span></div></div>
+<div class="box"><div class="sub">Evdeki malzemeler</div><span class="chip">Pirinç</span><span class="chip">Mercimek</span><span class="chip">Yumurta</span><span class="chip">+ Ekle</span></div>
+<div class="btn btn-p">Planı oluştur</div></div></div><div class="step"><div class="num">3</div><h3>Menü önerilerini al</h3><p>Uygun tarifler ve haftalık yemek planı hazırlanır.</p><div class="scr" role="img" aria-label="Örnek uygulama ekranı: Menü önerilerini al"><div class="t">Haftalık plan</div><div class="sub">Çölyak + Laktoz uyumlu</div>
+<div class="box"><div class="sub">Pazartesi</div><b>Mercimek çorbası</b></div>
+<div class="box"><div class="sub">Salı</div><b>Fırın tavuk, pirinç pilavı</b></div>
+<div class="box"><div class="sub">Çarşamba</div><b>Sebzeli omlet</b></div>
+<div class="box"><div class="sub">Perşembe</div><b>Zeytinyağlı barbunya</b></div>
+<div class="btn btn-p">Tarifi gör</div></div></div><div class="step"><div class="num">4</div><h3>Ürün uygunluğunu kontrol et</h3><p>Malzemeler ürün bilgisiyle eşleşir, doğrulanmamış ürünler açıkça işaretlenir.</p><div class="scr" role="img" aria-label="Örnek uygulama ekranı: Ürün uygunluğunu kontrol et"><div class="t">Ürün kontrolü</div><div class="sub">Çarşamba · Sebzeli omlet</div>
+<div class="box"><div class="r"><span>Ürün A (yumurta)</span><span class="tag ok">Doğrulanmış</span></div></div>
+<div class="box"><div class="r"><span>Ürün B (peynir)</span><span class="tag warn">Bilgi yetersiz</span></div><div class="sub" style="margin-top:4px">Gluten bilgisi doğrulanamadı. Güvenli sayılmaz.</div></div>
+<div class="box"><div class="r"><span>Ürün C (ekmek)</span><span class="tag no">Uygun değil</span></div><div class="sub" style="margin-top:4px">Gluten içeriyor.</div></div>
+<div class="btn btn-p">Alternatif öner</div></div></div><div class="step"><div class="num">5</div><h3>Listeni oluştur</h3><p>Malzemelere göre alışveriş listesi ve bütçe takibi hazırlanır.</p><div class="scr" role="img" aria-label="Örnek uygulama ekranı: Listeni oluştur"><div class="t">Alışveriş listesi</div><div class="sub">Uygun ürünlerden oluşturuldu</div>
+<div class="box"><span class="chk on"></span>Ürün A · yumurta</div>
+<div class="box"><span class="chk"></span>Ürün D · pirinç</div>
+<div class="box"><span class="chk"></span>Ürün E · mercimek</div>
+<div class="box"><span class="chk"></span>Ürün F · zeytinyağı</div>
+<div class="box"><div class="r"><span class="sub">Bütçe kullanımı</span><b>%62</b></div><div class="bar" style="margin-top:6px"><i style="width:62%"></i></div></div>
+<div class="btn btn-p">Listeyi paylaş</div></div></div><div class="step"><div class="num">6</div><h3>Alışverişi optimize et</h3><p>Platform geliştikçe doğrulanmış ürünleri marketler arasında karşılaştırabileceksin.</p><div class="scr" role="img" aria-label="Örnek uygulama ekranı: Alışverişi optimize et"><div class="t">Market karşılaştırma</div><div class="sub"><span class="tag warn">Sonraki aşama</span></div>
+<div class="box lock"><div class="r"><b>Market 1</b><span class="sub">fiyat · stok</span></div></div>
+<div class="box lock"><div class="r"><b>Market 2</b><span class="sub">fiyat · stok</span></div></div>
+<div class="box lock"><div class="r"><b>Market 3</b><span class="sub">fiyat · stok</span></div></div>
+<div class="sub" style="text-align:center;margin-top:6px">Canlı fiyat ve stok verisi için market iş birlikleri gerekiyor.</div>
+<div class="btn btn-s" style="margin-top:auto">Yakında</div></div></div></div><p class="demo">Ekranlar konsept tasarımdır; ürün adları ve değerler örnektir.</p></div></div></section>
+
+<section class="sec alt" id="operasyon"><div class="wrap">
+<div class="eyebrow">Arka planda</div>
+<h2 style="max-width:720px">İşi nasıl yürütüyoruz?</h2>
+<div class="g5">
+<div class="card"><div class="num">1</div><h3 style="font-size:18px">Ürün verisi</h3><p>İçerik ve alerjen beyanlarını toplamak, kaynakları kontrol etmek, eksik veya eski bilgiyi işaretlemek.</p></div>
+<div class="card"><div class="num">2</div><h3 style="font-size:18px">Tarif ve plan</h3><p>Glutensiz tarifleri düzenlemek, profillerle eşleştirmek, miktar ve maliyeti hesaplamak.</p></div>
+<div class="card"><div class="num">3</div><h3 style="font-size:18px">Teknoloji</h3><p>Uygulamayı, veritabanını ve eşleştirme sistemini geliştirmek.</p></div>
+<div class="card"><div class="num">4</div><h3 style="font-size:18px">Market bağlantıları</h3><p>Ürün ve fiyat bilgisini derlemek, market ve tedarikçilerle iş birliği kurmak.</p></div>
+<div class="card"><div class="num">5</div><h3 style="font-size:18px">Destek ve kalite</h3><p>Kullanıcı bildirimlerini incelemek, veriyi şeffaf tutmak.</p></div>
+</div>
+<p class="lead" style="max-width:none"><b>Ortaklar:</b> gıda üreticileri, marketler, diyetisyenler, çölyak dernekleri, teknoloji sağlayıcıları. <b>Kaynaklar:</b> ürün ve tarif veritabanı, yazılım altyapısı, gıda bilgisi inceleyen uzmanlar.</p>
+</div></section>
+
+<section class="sec" id="musteri"><div class="wrap">
+<div class="eyebrow">Kimin için?</div>
+<h2 style="max-width:720px">Çölyaklı bireyle yaşayan aileler.</h2>
+<div class="g3">
+<div class="card"><span class="tag ok">Ana hedef</span><h3>Çölyaklı çocuğu veya eşi olan aileler</h3><p>Hanede market alışverişini ve yemek planını yürüten kişi. Yaş 28–45, İstanbul'da yaşıyor, akıllı telefon kullanıyor, gıda harcamasına ve ürün güvenliğine dikkat ediyor.</p></div>
+<div class="card"><span class="tag warn">İkinci hedef</span><h3>Yeni tanı almış yetişkinler</h3><p>Glutensiz ürünleri tanımaya ve diyetini planlamaya yardıma ihtiyaç duyanlar.</p></div>
+<div class="card"><span class="tag gray">Erken benimseyenler</span><h3>Önce İstanbul, sonra Türkiye</h3><p>Çölyaklı çocukların ebeveynleri, yeni tanılılar, birden fazla beslenme kısıtı olan haneler ve online market ile yemek planlama araçlarını zaten kullananlar.</p></div>
+</div>
+</div></section>
+
+<section class="sec alt" id="veri"><div class="wrap">
+<div class="eyebrow">Pazar verisi</div>
+<h2 style="max-width:760px">Gerçek ve tekrar eden bir ihtiyaç.</h2>
+<h3 style="margin-top:40px">Objektif veri</h3>
+<div class="g3" style="margin-top:20px">
+<div class="card"><div class="stat">166.614</div><p style="margin-top:12px">Türkiye'de tanı almış çölyak hastası sayısı (Kasım 2023 sonu). 2021 sonunda bu sayı 138.230'du, yani iki yılda yaklaşık %20 artış.</p><p class="src">Kaynak: T.C. Sağlık Bakanlığı Sağlık Bilgi Sistemleri verileri; 2023 için Zonguldak İl Sağlık Müdürü açıklaması, 2021 için NTV haberi.</p></div>
+<div class="card"><div class="stat">%304</div><p style="margin-top:12px">Bir çalışmada glutensiz gıdalar glutenli karşılıklarından ortalama bu oranda daha pahalı bulundu. Fiyat verisi 2015–2016 dönemine aittir.</p><p class="src">Kaynak: Mersin Üniversitesi Gıda Mühendisliği yüksek lisans tezi (danışman: Prof. Dr. Mahir Turhan).</p></div>
+<div class="card"><div class="stat">%17,5</div><p style="margin-top:12px">Aynı çalışmada incelenen 200 glutensiz logolu ürünün bu kadarı 20 mg/kg gluten sınırının üzerinde çıktı. Etiketli ürünlerde bile doğrulama ihtiyacı var.</p><p class="src">Kaynak: aynı tez.</p></div>
+</div>
+<p class="lead" style="max-width:none">Ayrıca 2025'te yayımlanan bir çalışma, Türkiye'de satılan 456 paketli glutensiz ve glutenli ürünün etiketlerini fiyat ve besin kalitesi açısından karşılaştırdı (Kılınç, 2025, J Sci Food Agric, 105(15), 8798–8805).</p>
+<h3 style="margin-top:44px">Subjektif veri</h3>
+<div class="g2" style="margin-top:20px">
+<div class="pend"><b style="color:#17231D">Anket</b><br>Çölyaklı bireyler ve haneler için hazırlanan anket yürütülüyor. Etiket okuma zorluğu, fiyat, yemek planlama alışkanlıkları ve uygulamaya ilgi ölçülüyor. Sonuçlar tamamlandığında burada paylaşılacak.</div>
+<div class="pend"><b style="color:#17231D">Görüşmeler</b><br>Çölyaklı bireylerle yapılacak yarı yapılandırılmış görüşmelerden anonim alıntılar sonuçlar geldiğinde eklenecek.</div>
+</div>
+</div></section>
+
+<section class="sec" id="bmc"><div class="wrap">
+<div class="eyebrow">İş modeli</div>
+<h2 style="max-width:720px">Business Model Canvas (hipotezler).</h2>
+<div class="bmc">
+<div style="grid-area:pa"><h3>Ortaklar</h3><p>Çölyak dernekleri, marketler, gıda üreticileri, diyetisyenler.</p></div>
+<div style="grid-area:ac"><h3>Faaliyetler</h3><p>Ürün doğrulama, tarif veritabanı, geliştirme, market bağlantıları, destek.</p></div>
+<div style="grid-area:re"><h3>Kaynaklar</h3><p>Ürün ve tarif veritabanı, yazılım altyapısı, gıda bilgisi inceleyen uzmanlar.</p></div>
+<div style="grid-area:va;background:var(--tint)"><h3>Değer önerisi</h3><p>Çölyaklı haneler için güvenli, ekonomik ve zahmetsiz haftalık yemek planı ve alışveriş.</p></div>
+<div style="grid-area:cr"><h3>Müşteri ilişkisi</h3><p>Uygulama içi destek, kullanıcı bildirimleri, şeffaf veri uyarıları.</p></div>
+<div style="grid-area:ch"><h3>Kanallar</h3><p>Mobil uygulama, sosyal medya, çölyak dernekleri ve toplulukları.</p></div>
+<div style="grid-area:cs"><h3>Müşteri segmentleri</h3><p>Çölyaklı haneler; ikincil olarak yeni tanı almış yetişkinler.</p></div>
+<div style="grid-area:co"><h3>Maliyet yapısı</h3><p>Yazılım geliştirme, ürün verisi doğrulama, pazarlama, sunucu.</p></div>
+<div style="grid-area:rv"><h3>Gelir akışları (hipotez)</h3><p>Abonelik veya freemium; ileride market bağlantı komisyonu.</p></div>
+</div>
+<h3 style="margin-top:56px">Test edeceğimiz hipotezler</h3>
+<div class="g3" style="margin-top:20px">
+<div class="card"><span class="tag ok">İstiyorlar mı?</span><h3>Talep</h3><p>Çölyaklı hanelerin alışveriş yapan kişileri, ürün uygunluğunu haftalık plana bağlayan bir uygulamayı kullanmak ister. Test: anket ve kampanya ilgisi.</p></div>
+<div class="card"><span class="tag warn">Yapabilir miyiz?</span><h3>Uygulanabilirlik</h3><p>Ürün içerik ve etiket bilgisi yeterli doğrulukla toplanıp sınıflandırılabilir. Test: seçili ürünlerle elle doğrulama denemesi.</p></div>
+<div class="card"><span class="tag gray">Değer üretir mi?</span><h3>Sürdürülebilirlik</h3><p>Kullanıcılar gelişmiş özellikler için ödeme yapmaya istekli. Test: anketteki ödeme isteği sorusu ve kampanya sonucu.</p></div>
+</div>
+</div></section>
+
+<section class="sec alt" id="yol"><div class="wrap">
+<div class="eyebrow">Yol haritası</div>
+<h2>Önce çölyak, sonra daha fazlası.</h2>
+<div class="g4">
+<div class="stage on"><span class="tag warn">İlk sürüm</span><h3 style="margin:10px 0 6px">1 · Çölyaklı haneler</h3><p style="color:var(--mut)">Profil, tarif, haftalık plan, ürün eşleştirme, liste ve bütçe takibi.</p></div>
+<div class="stage"><h3 style="margin:10px 0 6px">2 · Gluten hassasiyeti</h3><p style="color:var(--mut)">Aynı gluten filtresi, ayarlanabilir hassasiyet seviyesi.</p></div>
+<div class="stage"><h3 style="margin:10px 0 6px">3 · Laktoz ve alerjiler</h3><p style="color:var(--mut)">Ek kısıt profilleri.</p></div>
+<div class="stage"><h3 style="margin:10px 0 6px">4 · Restoran rehberi</h3><p style="color:var(--mut)">Çapraz bulaşma doğrulaması daha zor olduğu için ilk sürümde yok; sonraki aşamada.</p></div>
+</div></div></section>
+
+<section class="sec" id="destek"><div class="wrap" style="text-align:center">
+<h2 style="max-width:640px;margin:0 auto">Projeyi birlikte hayata geçirelim.</h2>
+<p class="lead" style="margin:16px auto 0">Güvenli Sofra'nın geliştirilmesine kitle fonlama kampanyamızla destek olabilirsiniz.</p>
+<!-- TODO: kampanya ve anket bağlantılarını buraya yazın -->
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px"><a class="btn btn-p" href="#">Kampanyaya git</a><a class="btn btn-s" href="#">Ankete katıl</a></div>
+</div></section>
+
+<footer><div class="wrap">
+<p style="margin-bottom:14px"><b>Kaynaklar:</b></p>
+<ol class="refs">
+<li>T.C. Sağlık Bakanlığı Sağlık Bilgi Sistemleri verileri (2023 sonu: Zonguldak İl Sağlık Müdürü açıklaması; 2021 sonu: NTV haberi).</li>
+<li>Mersin Üniversitesi, Gıda Mühendisliği Anabilim Dalı, yüksek lisans tezi (glutensiz ürünlerde gluten analizi ve fiyat karşılaştırması).</li>
+<li>Kılınç, G. E. (2025). Gluten-free foods: healthy choice or expensive alternative? What evidence is there in Turkey? Journal of the Science of Food and Agriculture, 105(15), 8798–8805. doi:10.1002/jsfa.70117</li>
+</ol>
+<p style="margin-top:18px">© Güvenli Sofra (çalışma adı). Bu proje tıbbi tavsiye vermez; ürün etiketlerini ve doktorunuzun önerilerini esas alın.</p>
+</div></footer>
+</body>
+</html>
